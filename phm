@@ -251,7 +251,9 @@ class EApiClient( object ):
         output = self.runEnableCmds( 
             [ 'show interfaces status connected' ], 
             mode='text' )[ 0 ].split( '\n' )[ 1 : -1 ]
-        return [ x.split()[ 0 ] for x in output ]
+        for x in output:
+           if x:
+              return x.split()[ 0 ] 
 
     def interfaceErrorCounters( self, interfaces ):
         result = {}
